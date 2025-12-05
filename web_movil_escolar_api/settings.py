@@ -9,6 +9,7 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
     os.environ.get("RENDER_EXTERNAL_HOSTNAME"),
+    "web-movil-escolar-api-tnvm.onrender.com",
     "localhost",
     "127.0.0.1"
 ]
@@ -44,20 +45,18 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://web-movil-escolar-webapp.vercel.app",
-]
-
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:4200',
-    "http://localhost:54399",  
-    "http://127.0.0.1:54399",
+    "http://localhost:4200",
     "https://web-movil-escolar-webapp.vercel.app"
 ]
+
 CORS_ALLOW_CREDENTIALS = True
+
 
 ROOT_URLCONF = 'web_movil_escolar_api.urls'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-movil-escolar-webapp.vercel.app"
+]
 
 
 import os
@@ -119,14 +118,20 @@ REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
         'web_movil_escolar_api.models.BearerTokenAuthentication',
     ),
+
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
 }
+
 
 LOGGING = {
     'version': 1,
