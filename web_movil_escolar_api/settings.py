@@ -44,7 +44,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
     "http://localhost:54399",  
     "http://127.0.0.1:54399",
-    "https://web-movil-escolar-webapp.vercel.app/"
+    "https://web-movil-escolar-webapp.vercel.app"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
